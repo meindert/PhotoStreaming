@@ -20,7 +20,7 @@ namespace PhotoService
                 EntitySetRights.ReadSingle |
                 EntitySetRights.AllWrite);
 
-            config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V2;
+            config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
         }
     }
     public partial class PhotoData

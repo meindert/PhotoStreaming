@@ -80,6 +80,22 @@ namespace PhotoService
             }
         }
         private ObjectSet<PhotoInfo> _PhotoInfo;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ScannedARF> ScannedARFs
+        {
+            get
+            {
+                if ((_ScannedARFs == null))
+                {
+                    _ScannedARFs = base.CreateObjectSet<ScannedARF>("ScannedARFs");
+                }
+                return _ScannedARFs;
+            }
+        }
+        private ObjectSet<ScannedARF> _ScannedARFs;
 
         #endregion
 
@@ -91,6 +107,14 @@ namespace PhotoService
         public void AddToPhotoInfo(PhotoInfo photoInfo)
         {
             base.AddObject("PhotoInfo", photoInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ScannedARFs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToScannedARFs(ScannedARF scannedARF)
+        {
+            base.AddObject("ScannedARFs", scannedARF);
         }
 
         #endregion
@@ -420,6 +444,140 @@ namespace PhotoService
         private bool _DimensionsInitialized;
         partial void OnDimensionsChanging(Dimensions value);
         partial void OnDimensionsChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="PhotoData", Name="ScannedARF")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ScannedARF : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ScannedARF object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="fileData">Initial value of the FileData property.</param>
+        /// <param name="accidentReportId">Initial value of the AccidentReportId property.</param>
+        /// <param name="mimeType">Initial value of the MimeType property.</param>
+        public static ScannedARF CreateScannedARF(global::System.Guid id, global::System.Byte[] fileData, global::System.Guid accidentReportId, global::System.String mimeType)
+        {
+            ScannedARF scannedARF = new ScannedARF();
+            scannedARF.Id = id;
+            scannedARF.FileData = fileData;
+            scannedARF.AccidentReportId = accidentReportId;
+            scannedARF.MimeType = mimeType;
+            return scannedARF;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value, "Id");
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] FileData
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_FileData);
+            }
+            set
+            {
+                OnFileDataChanging(value);
+                ReportPropertyChanging("FileData");
+                _FileData = StructuralObject.SetValidValue(value, false, "FileData");
+                ReportPropertyChanged("FileData");
+                OnFileDataChanged();
+            }
+        }
+        private global::System.Byte[] _FileData;
+        partial void OnFileDataChanging(global::System.Byte[] value);
+        partial void OnFileDataChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid AccidentReportId
+        {
+            get
+            {
+                return _AccidentReportId;
+            }
+            set
+            {
+                OnAccidentReportIdChanging(value);
+                ReportPropertyChanging("AccidentReportId");
+                _AccidentReportId = StructuralObject.SetValidValue(value, "AccidentReportId");
+                ReportPropertyChanged("AccidentReportId");
+                OnAccidentReportIdChanged();
+            }
+        }
+        private global::System.Guid _AccidentReportId;
+        partial void OnAccidentReportIdChanging(global::System.Guid value);
+        partial void OnAccidentReportIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String MimeType
+        {
+            get
+            {
+                return _MimeType;
+            }
+            set
+            {
+                OnMimeTypeChanging(value);
+                ReportPropertyChanging("MimeType");
+                _MimeType = StructuralObject.SetValidValue(value, false, "MimeType");
+                ReportPropertyChanged("MimeType");
+                OnMimeTypeChanged();
+            }
+        }
+        private global::System.String _MimeType;
+        partial void OnMimeTypeChanging(global::System.String value);
+        partial void OnMimeTypeChanged();
 
         #endregion
 

@@ -3,9 +3,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PhotoData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PhotoData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="PhotoDataStoreContainer">
-          <EntitySet Name="PhotoInfo" EntityType="PhotoData.Store.PhotoInfo" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PhotoInfo" EntityType="PhotoData.Store.PhotoInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ScannedARFs" EntityType="PhotoData.Store.ScannedARFs" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="PhotoInfo">
           <Key>
@@ -26,13 +27,22 @@
           <Property Name="DateModified" Type="datetime" Nullable="false" />
           <Property Name="MimeType" Type="nvarchar" MaxLength="50" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="ScannedARFs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileData" Type="varbinary(max)" Nullable="false" />
+          <Property Name="AccidentReportId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MimeType" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PhotoData" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PhotoDataContainer" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="PhotoInfo" EntityType="PhotoData.PhotoInfo" />
+          <EntitySet Name="ScannedARFs" EntityType="PhotoData.ScannedARF" />
         </EntityContainer>
 
         <EntityType Name="PhotoInfo" m:HasStream="true" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
@@ -40,14 +50,14 @@
             <PropertyRef Name="PhotoId" />
           </Key>
           <Property Name="PhotoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="FileName" Type="String" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="FileSize" Type="Int32" Nullable="true" />
-          <Property Name="DateTaken" Type="DateTime" Nullable="true" />
-          <Property Name="TakenBy" Type="String" Nullable="true" />
-          <Property Name="DateAdded" Type="DateTime" Nullable="false" />
+          <Property Name="DateTaken" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="TakenBy" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Exposure" Type="PhotoData.Exposure" Nullable="false" />
           <Property Name="Dimensions" Type="PhotoData.Dimensions" Nullable="false" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -61,6 +71,15 @@
           <Property Name="Height" Type="Int16" Nullable="true" />
           <Property Name="Width" Type="Int16" Nullable="true" />
         </ComplexType>
+        <EntityType Name="ScannedARF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Binary" Name="FileData" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Guid" Name="AccidentReportId" Nullable="false" />
+          <Property Type="String" Name="MimeType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -91,6 +110,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ScannedARFs">
+            <EntityTypeMapping TypeName="PhotoData.ScannedARF">
+              <MappingFragment StoreEntitySet="ScannedARFs">
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="AccidentReportId" ColumnName="AccidentReportId" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -112,7 +141,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="PhotoData" xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-        <EntityTypeShape EntityType="PhotoData.PhotoInfo" Width="1.5" PointX="5.125" PointY="2" Height="2.7427376302083326" />
+        <EntityTypeShape EntityType="PhotoData.PhotoInfo" Width="1.5" PointX="2.75" PointY="0.5" Height="2.7427376302083326" />
+        <EntityTypeShape EntityType="PhotoData.ScannedARF" Width="1.5" PointX="4.875" PointY="0.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
