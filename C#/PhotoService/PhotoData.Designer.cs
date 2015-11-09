@@ -134,7 +134,7 @@ namespace PhotoService
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -153,7 +153,7 @@ namespace PhotoService
                 {
                     OnPhotoIdChanging(value);
                     ReportPropertyChanging("PhotoId");
-                    _PhotoId = StructuralObject.SetValidValue(value);
+                    _PhotoId = StructuralObject.SetValidValue(value, "PhotoId");
                     ReportPropertyChanged("PhotoId");
                     OnPhotoIdChanged();
                 }
@@ -178,7 +178,7 @@ namespace PhotoService
             {
                 OnFileNameChanging(value);
                 ReportPropertyChanging("FileName");
-                _FileName = StructuralObject.SetValidValue(value, false);
+                _FileName = StructuralObject.SetValidValue(value, false, "FileName");
                 ReportPropertyChanged("FileName");
                 OnFileNameChanged();
             }
@@ -202,7 +202,7 @@ namespace PhotoService
             {
                 OnFileSizeChanging(value);
                 ReportPropertyChanging("FileSize");
-                _FileSize = StructuralObject.SetValidValue(value);
+                _FileSize = StructuralObject.SetValidValue(value, "FileSize");
                 ReportPropertyChanged("FileSize");
                 OnFileSizeChanged();
             }
@@ -226,7 +226,7 @@ namespace PhotoService
             {
                 OnDateTakenChanging(value);
                 ReportPropertyChanging("DateTaken");
-                _DateTaken = StructuralObject.SetValidValue(value);
+                _DateTaken = StructuralObject.SetValidValue(value, "DateTaken");
                 ReportPropertyChanged("DateTaken");
                 OnDateTakenChanged();
             }
@@ -250,7 +250,7 @@ namespace PhotoService
             {
                 OnTakenByChanging(value);
                 ReportPropertyChanging("TakenBy");
-                _TakenBy = StructuralObject.SetValidValue(value, true);
+                _TakenBy = StructuralObject.SetValidValue(value, true, "TakenBy");
                 ReportPropertyChanged("TakenBy");
                 OnTakenByChanged();
             }
@@ -274,7 +274,7 @@ namespace PhotoService
             {
                 OnDateAddedChanging(value);
                 ReportPropertyChanging("DateAdded");
-                _DateAdded = StructuralObject.SetValidValue(value);
+                _DateAdded = StructuralObject.SetValidValue(value, "DateAdded");
                 ReportPropertyChanged("DateAdded");
                 OnDateAddedChanged();
             }
@@ -298,7 +298,7 @@ namespace PhotoService
             {
                 OnDateModifiedChanging(value);
                 ReportPropertyChanging("DateModified");
-                _DateModified = StructuralObject.SetValidValue(value);
+                _DateModified = StructuralObject.SetValidValue(value, "DateModified");
                 ReportPropertyChanged("DateModified");
                 OnDateModifiedChanged();
             }
@@ -322,7 +322,7 @@ namespace PhotoService
             {
                 OnCommentsChanging(value);
                 ReportPropertyChanging("Comments");
-                _Comments = StructuralObject.SetValidValue(value, true);
+                _Comments = StructuralObject.SetValidValue(value, true, "Comments");
                 ReportPropertyChanged("Comments");
                 OnCommentsChanged();
             }
@@ -346,7 +346,7 @@ namespace PhotoService
             {
                 OnMimeTypeChanging(value);
                 ReportPropertyChanging("MimeType");
-                _MimeType = StructuralObject.SetValidValue(value, true);
+                _MimeType = StructuralObject.SetValidValue(value, true, "MimeType");
                 ReportPropertyChanged("MimeType");
                 OnMimeTypeChanged();
             }
@@ -423,7 +423,6 @@ namespace PhotoService
 
         #endregion
 
-    
     }
 
     #endregion
@@ -438,7 +437,7 @@ namespace PhotoService
     [Serializable()]
     public partial class Dimensions : ComplexObject
     {
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -455,7 +454,7 @@ namespace PhotoService
             {
                 OnHeightChanging(value);
                 ReportPropertyChanging("Height");
-                _Height = StructuralObject.SetValidValue(value);
+                _Height = StructuralObject.SetValidValue(value, "Height");
                 ReportPropertyChanged("Height");
                 OnHeightChanged();
             }
@@ -479,7 +478,7 @@ namespace PhotoService
             {
                 OnWidthChanging(value);
                 ReportPropertyChanging("Width");
-                _Width = StructuralObject.SetValidValue(value);
+                _Width = StructuralObject.SetValidValue(value, "Width");
                 ReportPropertyChanged("Width");
                 OnWidthChanged();
             }
@@ -500,7 +499,7 @@ namespace PhotoService
     [Serializable()]
     public partial class Exposure : ComplexObject
     {
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -517,7 +516,7 @@ namespace PhotoService
             {
                 OnAperatureChanging(value);
                 ReportPropertyChanging("Aperature");
-                _Aperature = StructuralObject.SetValidValue(value);
+                _Aperature = StructuralObject.SetValidValue(value, "Aperature");
                 ReportPropertyChanged("Aperature");
                 OnAperatureChanged();
             }
@@ -541,7 +540,7 @@ namespace PhotoService
             {
                 OnShutterSpeedChanging(value);
                 ReportPropertyChanging("ShutterSpeed");
-                _ShutterSpeed = StructuralObject.SetValidValue(value);
+                _ShutterSpeed = StructuralObject.SetValidValue(value, "ShutterSpeed");
                 ReportPropertyChanged("ShutterSpeed");
                 OnShutterSpeedChanged();
             }
@@ -565,7 +564,7 @@ namespace PhotoService
             {
                 OnFilmSpeedChanging(value);
                 ReportPropertyChanging("FilmSpeed");
-                _FilmSpeed = StructuralObject.SetValidValue(value);
+                _FilmSpeed = StructuralObject.SetValidValue(value, "FilmSpeed");
                 ReportPropertyChanged("FilmSpeed");
                 OnFilmSpeedChanged();
             }
@@ -580,5 +579,4 @@ namespace PhotoService
 
     #endregion
 
-    
 }
